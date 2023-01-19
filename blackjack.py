@@ -34,7 +34,43 @@ class Deck:
         single_card = self.deck.pop()
         return single_card
 
-test_deck = Deck()
-print(test_deck)
+class Hand:
+    def __init__(self):
+        self.cards = []
+        self.value = 0
+        self.aces = 0
 
+    def add_card(self, card):
+        self.cards.append(card)
+        self.value += values[card.rank]
+        if card.rank == "Ace":
+            self.aces += 1
 
+    def adjust_for_ace(self):
+        while self.value > 21 and self.aces:
+            self.value -= 10
+            self.aces -= 1
+
+class Chips:
+    def __init__(self):
+        self.total = 100
+        self.bet = 0
+
+    def win_bet(self):
+        self.total += self.bet
+
+    def lose_bet(self):
+        self.total -= self.bet
+
+    def take_bet(Chips):
+
+        while True:
+            try:
+                chips.bet = int(input("How many chips would you like to bet?"))
+            except ValueError:
+                print("Sorry, the bet must be an integer")
+            else:
+                if chips.bet > chips.total:
+                    print("Sorry, your bet can't exceed", chips.total)
+                else:
+                    break
