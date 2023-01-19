@@ -4,3 +4,4 @@ def say_hello(word):
 
 say_hello("hello")
 say_hello("Yo")
+say_hello("hi")
