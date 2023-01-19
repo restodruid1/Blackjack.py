@@ -95,6 +95,19 @@ def hit_or_stand(deck,hand):
             continue
         break
 
+def show_some(player,dealer):
+    print("\nDealer's Hand:")
+    print("<card hidden>")
+    print('',dealer.cards[1])
+    print("\nPlayer's Hand:", *player.cards, sep='\n ')
+
+def show_all(player,dealer):
+    print("\nDealer's Hand:", *dealer.cards, sep='\n ')
+    print("Dealer's Hand =", dealer.value)
+    print("\nPlayer's Hand:", *player.cards, sep='\n ')
+    print("Player's Hand =", *player.value)
+
+
 def player_busts(player,dealer,chips):
     print("Player busts")
     chips.lose_bet()
@@ -109,4 +122,5 @@ def dealer_wins(player,dealer,chips):
     chips.lose_bet()
 def push(player,dealer):
     print("Dealer and Player tie. It's a push")
-            
+
+
