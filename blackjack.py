@@ -124,10 +124,12 @@ def push(player,dealer):
     print("Dealer and Player tie. It's a push")
 
 
+run=1
 while True:
     print("""
     Welcome to Blackjack. Dealer hits until they reach 17. Don't go over 21 or you lose"""
     )
+
     #Shuffle and deal
     deck = Deck()
     deck.shuffle()
@@ -141,7 +143,12 @@ while True:
     dealer_hand.add_card(deck.deal())
 
 
-    player_chips = Chips()
+    if run==1:
+        player_chips = Chips()
+        #Ask for how much money they want
+        #print('Runs: ', run)
+        moneyamount = input('How much money do you want?')
+        player_chips.total = int(moneyamount)
 
     take_bet(player_chips)
 
@@ -178,9 +185,14 @@ while True:
 
 
     print("\nPlayer's winnings stand at", player_chips.total)
+    if player_chips.total == 0:
+        break
 
     new_game = input("Would you like to play another hand? Enter 'y' or 'n' ")
 
+    run+=1
+    #print('run gets incremented here')
+    
     if new_game[0].lower() == 'y':
         playing = True
         continue
