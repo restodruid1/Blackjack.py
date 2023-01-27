@@ -160,7 +160,21 @@ while True:
 
     show_some(player_hand,dealer_hand)
 
+    again = 'y'
+    if player_hand.value == 21:
+        if again == 'y':
+            player_wins(player_hand,dealer_hand,player_chips)
+            player_chips.total += player_chips.bet * 2 - player_chips.bet
+            playing = True
+            print("BLACKJACKKKKKKKKKKKKKKKKKKKKK")
+            print(f"\nPlayer's winnings stand at: {player_chips.total}")
+            continue
+
     while playing:
+        #if player_hand.value == 21:
+            #player_wins(player_hand,dealer_hand,player_chips)
+            #player_chips.bet = player_chips.bet * 2 - player_chips.bet
+            #break
 
         hit_or_stand(deck,player_hand)
 
@@ -203,7 +217,13 @@ while True:
     if new_game[0].lower() == 'y':
         playing = True
         continue
-    else:
+    elif new_game[0].lower() == 'n':
         print(f"Thanks for playing. Your total is {player_chips.total}")
         break
+    else:
+        print("Sorry, please try again. Enter 'y' or 'n'")
+        continue
+    
+    
+    
 
