@@ -66,7 +66,7 @@ def take_bet(chips):
 
     while True:
         try:
-            chips.bet = int(input("How many chips would you like to bet?"))
+            chips.bet = int(input("How many chips would you like to bet? "))
         except ValueError:
             print("Sorry, the bet must be an integer")
         else:
@@ -83,10 +83,14 @@ def hit_or_stand(deck,hand):
     global playing
 
     while True:
-        x = input("Would you like to Hit or Stand? Enter 'h' or 's'")
+        x = input("Would you like to Hit or Stand? Enter 'h', 's', or 'd'. \n'd' stands for double down ")
 
         if x[0].lower() == 'h':
             hit(deck,hand)
+        elif x[0].lower() == 'd':
+            player_chips.bet += player_chips.bet *2
+            hit(deck,hand)
+            playing = False
         elif x[0].lower() == 's':
             print("Player stands. Dealer is playing.")
             playing = False
@@ -94,6 +98,8 @@ def hit_or_stand(deck,hand):
             print("Sorry, please try again.")
             continue
         break
+
+
 
 def show_some(player,dealer):
     print("\nDealer's Hand:")
@@ -147,7 +153,7 @@ while True:
         player_chips = Chips()
         #Ask for how much money they want
         #print('Runs: ', run)
-        moneyamount = input('How much money do you want?')
+        moneyamount = input('How much money do you want to start with? ')
         player_chips.total = int(moneyamount)
 
     take_bet(player_chips)
@@ -185,7 +191,8 @@ while True:
 
 
     print("\nPlayer's winnings stand at", player_chips.total)
-    if player_chips.total == 0:
+    if player_chips.total <= 0:
+        print("You ran out of money. You lost.")
         break
 
     new_game = input("Would you like to play another hand? Enter 'y' or 'n' ")
@@ -197,6 +204,6 @@ while True:
         playing = True
         continue
     else:
-        print("Thanks for playing")
+        print(f"Thanks for playing. Your total is {player_chips.total}")
         break
 
