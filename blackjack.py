@@ -88,9 +88,13 @@ def hit_or_stand(deck,hand):
         if x[0].lower() == 'h':
             hit(deck,hand)
         elif x[0].lower() == 'd':
-            player_chips.bet += player_chips.bet *2
-            hit(deck,hand)
-            playing = False
+            if player_chips.total < player_chips.bet *2:
+                print("You dont have enough money")
+                continue 
+            else:
+                player_chips.bet += player_chips.bet *2
+                hit(deck,hand)
+                playing = False
         elif x[0].lower() == 's':
             print("Player stands. Dealer is playing.")
             playing = False
